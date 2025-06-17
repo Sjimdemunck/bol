@@ -8,11 +8,12 @@ This project was built as an assignment. Orginally intended to be fully static s
 
 > _"It was a great project to work on — flexible, fast, and fun to prototype with. Static was the plan, but the request for GraphQL tilted it out of favor."_
 
+--
 ---
 
 ## 🎥 Demo's
 
-The demo's of the application, storybook, tooling are in the showcase PR
+The demo's of the application, storybook, tooling are in the showcase [PR](https://github.com/Sjimdemunck/bol/pull/1)
 
 ---
 
