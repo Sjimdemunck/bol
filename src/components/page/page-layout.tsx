@@ -1,6 +1,7 @@
 import Header from './header';
 import { Card, CardContent } from '@/components/ui/card';
 import Footer from './footer';
+import ProductFilter from '../product/product-filter';
 
 export default function PageLayout() {
   return (
@@ -18,7 +19,9 @@ export default function PageLayout() {
                     Product Filter
                   </h2>
                   <Card>
-                    <CardContent>Something with Product filtering</CardContent>
+                    <CardContent>
+                      <ProductFilter />
+                    </CardContent>
                   </Card>
                 </section>
                 <section aria-labelledby="section-1-title">
