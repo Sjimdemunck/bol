@@ -7,7 +7,7 @@ import {
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
 import { Bell, Menu as MenuIcon } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { cn } from '@/utils/utils';
 import { user, userNavigation, navigation } from './page-layout.lib';
 import { ModeToggle } from '../theme/theme-toggle';
 

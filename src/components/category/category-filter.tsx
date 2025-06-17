@@ -7,7 +7,10 @@ const options = [
   { label: 'Dairy', value: 'dairy' },
 ];
 
-export default function ProductFilter() {
+type CategoryFilterProps = {
+  variant?: 'popover' | 'inline';
+};
+export default function CategoryFilter({ variant }: CategoryFilterProps) {
   const [selected, setSelected] = useState<string[]>([]);
 
   return (
@@ -16,8 +19,10 @@ export default function ProductFilter() {
         options={options}
         selected={selected}
         onChange={setSelected}
-        placeholder="Producten filter"
+        placeholder="Product Groep"
         searchPlaceholder="Zoek op ..."
+        variant={variant}
+        title="Product Groep"
       />
     </div>
   );

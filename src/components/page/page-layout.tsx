@@ -1,7 +1,7 @@
 import Header from './header';
 import { Card, CardContent } from '@/components/ui/card';
 import Footer from './footer';
-import ProductFilter from '../product/product-filter';
+import CategoryFilter from '../category/category-filter';
 
 export default function PageLayout() {
   return (
@@ -16,17 +16,24 @@ export default function PageLayout() {
               <div className="grid grid-cols-1 gap-8 lg:col-span-2">
                 <section aria-labelledby="section-1-title">
                   <h2 id="section-1-title" className="sr-only">
-                    Product Filter
+                    Category Filter
                   </h2>
                   <Card>
                     <CardContent>
-                      <ProductFilter />
+                      <h2 className="text-2xl">Multiselect filter - Inline</h2>
+                      <CategoryFilter />
                     </CardContent>
                   </Card>
                 </section>
                 <section aria-labelledby="section-1-title">
                   <Card>
-                    <CardContent>Results A</CardContent>
+                    <CardContent>
+                      <h2 className="text-2xl">Multiselect filter - Popover</h2>
+                      <span className="text-xs">
+                        Can be used for filtering on data tables
+                      </span>
+                      <CategoryFilter variant="popover" />
+                    </CardContent>
                   </Card>
                 </section>
               </div>

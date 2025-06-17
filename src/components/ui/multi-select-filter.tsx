@@ -17,7 +17,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { CheckIcon, X } from 'lucide-react';
 import { useCallback, useMemo, useState } from 'react';
-import { cn } from '@/lib/utils';
+import { cn } from '@/utils/utils';
 
 type Option = { label: string; value: string };
 
@@ -26,6 +26,8 @@ type MultiSelectFilterProps = {
   selected: string[];
   onChange: (selected: string[]) => void;
   placeholder?: string;
+  variant?: 'popover' | 'inline';
+  title?: string;
   searchPlaceholder?: string;
 };
 
@@ -34,6 +36,8 @@ export function MultiSelectFilter({
   selected,
   onChange,
   placeholder = 'Producten filter',
+  variant = 'inline',
+  title,
   searchPlaceholder = 'Zoek op ...',
 }: MultiSelectFilterProps) {
   const [search, setSearch] = useState('');
@@ -65,64 +69,107 @@ export function MultiSelectFilter({
   );
 
   return (
-    <Popover>
-      <PopoverTrigger asChild>
-        <Button
-          variant="outline"
-          className="flex items-center gap-2 border-dashed"
-        >
-          {placeholder}
-          {selected.length > 0 && (
-            <>
-              <Badge variant="secondary">{selected.length}</Badge>
-              <Button
-                size="icon"
-                variant="ghost"
-                onClick={clearAll}
-                className="w-4 h-4 p-0"
-              >
-                <X className="w-3 h-3" />
-              </Button>
-            </>
-          )}
-        </Button>
-      </PopoverTrigger>
-      <PopoverContent className="w-64 p-0">
-        <Command shouldFilter={false}>
-          <CommandInput
-            value={search}
-            onValueChange={setSearch}
-            placeholder={searchPlaceholder}
-            className="h-9"
-          />
-          <CommandList>
-            <CommandEmpty>No results found</CommandEmpty>
-            <CommandGroup>
-              {filteredOptions.map((option) => {
-                const isSelected = selected.includes(option.value);
-                return (
-                  <CommandItem
-                    key={option.value}
-                    onSelect={() => toggleValue(option.value)}
-                  >
-                    <div
-                      className={cn(
-                        'mr-2 flex h-4 w-4 items-center justify-center rounded border',
-                        isSelected
-                          ? 'bg-primary text-primary-foreground'
-                          : 'opacity-30'
-                      )}
+    <>
+      {variant === 'inline' ? (
+        <div className="border rounded-xl p-4">
+          {title && <h3 className="mb-2 text-sm font-semibold">{title}</h3>}
+          <Command shouldFilter={false}>
+            <CommandInput
+              value={search}
+              onValueChange={setSearch}
+              placeholder={searchPlaceholder}
+              className="h-9"
+            />
+            <CommandList>
+              <CommandEmpty>No results found</CommandEmpty>
+              <CommandGroup>
+                {filteredOptions.map((option) => {
+                  const isSelected = selected.includes(option.value);
+                  return (
+                    <CommandItem
+                      key={option.value}
+                      onSelect={() => toggleValue(option.value)}
                     >
-                      <CheckIcon className="h-4 w-4" />
-                    </div>
-                    {option.label}
-                  </CommandItem>
-                );
-              })}
-            </CommandGroup>
-          </CommandList>
-        </Command>
-      </PopoverContent>
-    </Popover>
+                      <div
+                        className={cn(
+                          'mr-2 flex h-4 w-4 items-center justify-center rounded border',
+                          isSelected ? 'bg-primary text-white' : 'opacity-30'
+                        )}
+                      >
+                        <CheckIcon
+                          className={cn('h-4 w-4', isSelected && 'text-white')}
+                        />
+                      </div>
+                      {option.label}
+                    </CommandItem>
+                  );
+                })}
+              </CommandGroup>
+            </CommandList>
+          </Command>
+        </div>
+      ) : (
+        <Popover>
+          <PopoverTrigger asChild>
+            <Button
+              variant="outline"
+              className="flex items-center gap-2 border-dashed"
+            >
+              {placeholder}
+              {selected.length > 0 && (
+                <>
+                  <Badge variant="secondary">{selected.length}</Badge>
+                  <Button
+                    size="icon"
+                    variant="ghost"
+                    onClick={clearAll}
+                    className="w-4 h-4 p-0"
+                  >
+                    <X className="w-3 h-3" />
+                  </Button>
+                </>
+              )}
+            </Button>
+          </PopoverTrigger>
+          <PopoverContent className="p-0">
+            <Command shouldFilter={false}>
+              <CommandInput
+                value={search}
+                onValueChange={setSearch}
+                placeholder={searchPlaceholder}
+                className="h-9"
+              />
+              <CommandList>
+                <CommandEmpty>No results found</CommandEmpty>
+                <CommandGroup>
+                  {filteredOptions.map((option) => {
+                    const isSelected = selected.includes(option.value);
+                    return (
+                      <CommandItem
+                        key={option.value}
+                        onSelect={() => toggleValue(option.value)}
+                      >
+                        <div
+                          className={cn(
+                            'mr-2 flex h-4 w-4 items-center justify-center rounded border',
+                            isSelected ? 'bg-primary text-white' : 'opacity-30'
+                          )}
+                        >
+                          <CheckIcon
+                            className="h-4 w-4 text-white"
+                            aria-hidden
+                          />
+                        </div>
+                        {option.label}
+                      </CommandItem>
+                    );
+                  })}
+                </CommandGroup>
+              </CommandList>
+            </Command>
+          </PopoverContent>
+        </Popover>
+      )}
+    </>
   );
 }
