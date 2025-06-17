@@ -1,5 +1,5 @@
-import { useState } from 'react';
 import { MultiSelectFilter } from '@/components/ui/multi-select-filter';
+import { useCategoryFilterStore } from '@/store/useCategoryFilterStore';
 
 const options = [
   { label: 'Fruits', value: 'fruits' },
@@ -12,7 +12,8 @@ export type CategoryFilterProps = {
 };
 
 export function CategoryFilter({ variant }: CategoryFilterProps) {
-  const [selected, setSelected] = useState<string[]>([]);
+  const selected = useCategoryFilterStore((store) => store.selected);
+  const setSelected = useCategoryFilterStore((store) => store.setSelected);
 
   return (
     <div className="p-4">
