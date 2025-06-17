@@ -1,54 +1,129 @@
-# React + TypeScript + Vite
+# 🧠 Multiselect Filter
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern web app featuring a dynamic multi-select filter component with inline and popover variants. Designed to be developer-friendly, accessible, and easily extendable.
 
-Currently, two official plugins are available:
+## 🔍 Project Summary
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This project was built as an assignment. Orginally intended to be fully static so it could be deployed on Github Pages. The assignment favoured towards gql server, so dug in to that tech. Which results in not having it on Github Pages.
 
-## Expanding the ESLint configuration
+> _"It was a great project to work on — flexible, fast, and fun to prototype with. Static was the plan, but the request for GraphQL tilted it out of favor."_
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## 🧱 Tech Stack
+
+| Tech                                                             | Description                                                     |
+| ---------------------------------------------------------------- | --------------------------------------------------------------- |
+| [Vite](https://vitejs.dev/)                                      | Lightning-fast frontend tooling and bundler                     |
+| [Zustand](https://zustand-demo.pmnd.rs/)                         | A small, fast, and scalable bearbones state management solution |
+| [TanStack Query](https://tanstack.com/query)                     | Powerful asynchronous state management for React                |
+| [GraphQL Yoga](https://the-guild.dev/graphql/yoga-server)        | Lightweight GraphQL server used to mock and serve category data |
+| [Vitest](https://vitest.dev/)                                    | Blazing fast test runner, compatible with Jest syntax           |
+| [Storybook](https://storybook.js.org/)                           | Component-driven UI development environment                     |
+| [ESLint](https://eslint.org/) + [Prettier](https://prettier.io/) | Code quality and formatting tools                               |
+| [TypeScript](https://www.typescriptlang.org/)                    | Static typing for improved DX and safety                        |
+
+---
+
+## 🚀 Getting Started
+
+### 📦 Prerequisites
+
+- Node.js (v18+ recommended)
+- [pnpm](https://pnpm.io/) (if you don’t have it: `npm install -g pnpm`)
+
+---
+
+### 🔧 Installation
+
+```bash
+pnpm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### 🛠️ Running the App
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+#### 1️⃣ start GraphQL server (mock data) -- this is the items.json from the assignment
+
+```bash
+pnpm run dev:graphql
 ```
+
+#### 2️⃣ in another terminal: start Vite dev server
+
+```bash
+pnpm run dev
+```
+
+Checkout http://localhost:5173 or the gql server on 4000
+
+---
+
+## 🧪 Testing
+
+```bash
+# run unit tests
+pnpm run test
+
+# interactive UI runner
+pnpm run test:ui
+
+# coverage report
+pnpm run coverage
+```
+
+---
+
+## 🧹 Lint & Format
+
+```bash
+# lint all files
+pnpm run lint
+
+# format codebase
+pnpm run format
+
+# check formatting only
+pnpm run format:check
+```
+
+---
+
+### 📦 Build & Preview
+
+```bash
+pnpm run build     # production build
+pnpm run preview   # local preview of build
+```
+
+---
+
+### 📖 Storybook
+
+```bash
+pnpm run storybook         # dev mode
+pnpm run build-storybook   # static build
+```
+
+---
+
+### 📂 Folder Structure
+
+```css
+src/
+├─ api/          GraphQL queries & clients
+├─ components/   Reusable UI (MultiSelect, etc.)
+├─ server/       GraphQL Yoga setup
+├─ store/        Zustand state
+├─ utils/        Helpers (e.g., sanitize)
+└─ category/     Category filter integration
+```
+
+---
+
+### 📫 Contact
+
+📧 [Email](s.demunck@gmail.com)
+🐱 [GitHub](https://github.com/Sjimdemunck)
+💼 [LinkedIn](https://linkedin.com/in/sjim-de-munck/)
