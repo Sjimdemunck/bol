@@ -1,4 +1,5 @@
 import { convertCategories } from './convert-categories';
+import { describe, it, expect } from 'vitest';
 
 describe('convertCategories', () => {
   it('converts and decodes categories correctly', () => {
