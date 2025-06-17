@@ -1,38 +1,31 @@
+import type { Option } from '@/types';
 import * as he from 'he';
 
-export type Option = {
-  label: string;
-  value: string;
-};
-
-/**
- * Converts a raw category array into multiselect-ready option objects. Example data set.
- * Each item will be of shape: { label: string, value: string } as typed by Option.
- *
- * @param categories - raw string array of categories (possibly with HTML entities)
- * @returns Array of Option objects
+/* 
+ Since the categories are fetched from the API, we need to ensure
+ they are properly formatted for use in the filter component. 
+ Dedupe, and sanitize them.
  */
 export function convertCategories(categories: string[]): Option[] {
-  console.log('📦 Starting category conversion...');
+  // Decode, trim, and deduplicate
+  const unique = new Set<string>();
 
-  const decoded = categories.map((cat) => {
-    const decodedCategorie = he.decode(cat);
-    console.log(`🔍 Decoded: "${cat}" → "${decodedCategorie}"`);
-    return decodedCategorie;
-  });
+  const decoded = categories
+    .map((cat) => he.decode(cat.trim()))
+    .filter((label) => {
+      const lower = label.toLowerCase();
+      if (unique.has(lower)) return false;
+      unique.add(lower);
+      return true;
+    });
 
   const options = decoded.map((label) => {
     const value = label
       .toLowerCase()
       .replace(/[^a-z0-9]+/gi, '-')
       .replace(/(^-|-$)/g, '');
-
-    console.log(
-      `✅ Converted to option: { label: "${label}", value: "${value}" }`
-    );
     return { label, value };
   });
 
-  console.log('🎉 Conversion complete!');
   return options;
 }

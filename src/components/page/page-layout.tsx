@@ -25,7 +25,7 @@ export default function PageLayout() {
                     </CardContent>
                   </Card>
                 </section>
-                <section aria-labelledby="section-1-title">
+                {/* <section aria-labelledby="section-1-title">
                   <Card>
                     <CardContent>
                       <h2 className="text-2xl">Multiselect filter - Popover</h2>
@@ -35,7 +35,7 @@ export default function PageLayout() {
                       <CategoryFilter variant="popover" />
                     </CardContent>
                   </Card>
-                </section>
+                </section> */}
               </div>
 
               {/* Right column */}

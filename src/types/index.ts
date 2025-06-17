@@ -3,3 +3,4 @@ export type User = {
   email: string;
   imageUrl: string;
 };
+export type Option = { label: string; value: string };
