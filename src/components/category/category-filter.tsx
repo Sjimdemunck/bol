@@ -18,10 +18,14 @@ export function CategoryFilter({ variant }: CategoryFilterProps) {
 
   // Normally you would show something like a skeleton loader here and toast for the error
   if (isPending || isFetching)
-    return <p className="p-4 text-sm">⏳ Laden...</p>;
+    return <p className="p-4 text-sm">⏳ Loading...</p>;
   if (error)
     return (
-      <p className="p-4 text-sm text-red-500">❌ Fout bij laden van data</p>
+      <p className="p-4 text-sm text-red-500">
+        ❌ error with loading data,
+        <br />
+        ⚠️ dont forget the gql server!
+      </p>
     );
 
   return (

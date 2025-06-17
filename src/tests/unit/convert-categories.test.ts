@@ -1,4 +1,4 @@
-import { convertCategories } from './convert-categories';
+import { convertCategories } from '../../utils/convert-categories';
 import { describe, it, expect } from 'vitest';
 
 describe('convertCategories', () => {

@@ -8,6 +8,17 @@ export default defineConfig({
   test: {
     globals: true,
     environment: 'jsdom',
+    setupFiles: '.storybook/vitest.setup.ts',
+
+    // ✅ run *only* these files
+    include: ['src/tests/unit/**/*.test.{ts,tsx}'],
+
+    // ✅ never touch stories or .storybook
+    exclude: [
+      '**/*.stories.*',
+      '**/.storybook/**',
+      'src/tests/storybook/**', // where you parked story files
+    ],
   },
   plugins: [react(), tailwindcss()],
   resolve: {

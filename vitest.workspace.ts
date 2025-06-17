@@ -28,7 +28,6 @@ export default defineWorkspace([
         provider: 'playwright',
         instances: [{ browser: 'chromium' }],
       },
-      setupFiles: ['.storybook/vitest.setup.ts'],
     },
   },
 ]);
