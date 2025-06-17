@@ -18,8 +18,7 @@ import { Badge } from '@/components/ui/badge';
 import { CheckIcon, X } from 'lucide-react';
 import { useCallback, useMemo, useState } from 'react';
 import { cn } from '@/utils/utils';
-
-type Option = { label: string; value: string };
+import type { Option } from '@/types';
 
 type MultiSelectFilterProps = {
   options: Option[];
@@ -48,6 +47,18 @@ export function MultiSelectFilter({
       opt.label.toLowerCase().includes(search.toLowerCase())
     );
   }, [search, options]);
+
+  // Sort selected options to the top
+  // This ensures that selected options are always displayed first
+  const orderdOptions = useMemo(() => {
+    const selectedSet = new Set(selected);
+    return filteredOptions.slice().sort((a, b) => {
+      const aSelected = selectedSet.has(a.value);
+      const bSelected = selectedSet.has(b.value);
+      if (aSelected === bSelected) return 0;
+      return aSelected ? -1 : 1;
+    });
+  }, [filteredOptions, selected]);
 
   const toggleValue = useCallback(
     (filterValue: string) => {
@@ -83,7 +94,7 @@ export function MultiSelectFilter({
             <CommandList>
               <CommandEmpty>No results found</CommandEmpty>
               <CommandGroup>
-                {filteredOptions.map((option) => {
+                {orderdOptions.map((option) => {
                   const isSelected = selected.includes(option.value);
                   return (
                     <CommandItem
@@ -142,7 +153,7 @@ export function MultiSelectFilter({
               <CommandList>
                 <CommandEmpty>No results found</CommandEmpty>
                 <CommandGroup>
-                  {filteredOptions.map((option) => {
+                  {orderdOptions.map((option) => {
                     const isSelected = selected.includes(option.value);
                     return (
                       <CommandItem
