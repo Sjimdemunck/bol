@@ -10,6 +10,12 @@ This project was built as an assignment. Orginally intended to be fully static s
 
 ---
 
+## 🎥 Demo's
+
+The demo's of the application, storybook, tooling are in the showcase PR
+
+---
+
 ## 🧱 Tech Stack
 
 | Tech                                                             | Description                                                     |
