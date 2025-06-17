@@ -27,9 +27,9 @@ export const Popover: Story = {
     return (
       <MultiSelectFilter
         variant="popover"
-        title="Categorieën"
-        placeholder="Filter op categorie"
-        searchPlaceholder="Zoek categorie..."
+        title="Product Groep"
+        placeholder="Filter op Product Groep"
+        searchPlaceholder="Zoek op ..."
         options={mockOptions}
         selected={selected}
         onChange={setSelected}
@@ -44,9 +44,9 @@ export const Inline: Story = {
     return (
       <MultiSelectFilter
         variant="inline"
-        title="Categorieën"
-        placeholder="Filter op categorie"
-        searchPlaceholder="Zoek categorie..."
+        title="Product Groep"
+        placeholder="Filter op Product Groep"
+        searchPlaceholder="Zoek op ..."
         options={mockOptions}
         selected={selected}
         onChange={setSelected}
