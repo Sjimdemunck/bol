@@ -1,7 +1,7 @@
 import Header from './header';
 import { Card, CardContent } from '@/components/ui/card';
 import Footer from './footer';
-import CategoryFilter from '../category/category-filter';
+import { CategoryFilter } from '../category/category-filter';
 
 export default function PageLayout() {
   return (

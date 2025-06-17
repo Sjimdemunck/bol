@@ -7,10 +7,11 @@ const options = [
   { label: 'Dairy', value: 'dairy' },
 ];
 
-type CategoryFilterProps = {
+export type CategoryFilterProps = {
   variant?: 'popover' | 'inline';
 };
-export default function CategoryFilter({ variant }: CategoryFilterProps) {
+
+export function CategoryFilter({ variant }: CategoryFilterProps) {
   const [selected, setSelected] = useState<string[]>([]);
 
   return (
