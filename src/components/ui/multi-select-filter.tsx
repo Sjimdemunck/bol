@@ -48,8 +48,6 @@ export function MultiSelectFilter({
     );
   }, [search, options]);
 
-  // Sort selected options to the top
-  // This ensures that selected options are always displayed first
   const orderedOptions = useMemo(() => {
     const selectedSet = new Set(selected);
     return filteredOptions.slice().sort((a, b) => {
@@ -82,17 +80,30 @@ export function MultiSelectFilter({
   return (
     <>
       {variant === 'inline' ? (
-        <div className="border rounded-xl p-4">
-          {title && <h3 className="mb-2 text-sm font-semibold">{title}</h3>}
+        <div
+          className="border rounded-xl p-4"
+          role="group"
+          aria-labelledby="filter-title"
+        >
+          {title && (
+            <h3 id="filter-title" className="mb-2 text-sm font-semibold">
+              {title}
+            </h3>
+          )}
           <Command shouldFilter={false}>
             <CommandInput
               value={search}
               onValueChange={setSearch}
               placeholder={searchPlaceholder}
               className="h-9"
+              aria-label="Zoek in filteropties"
             />
-            <CommandList>
-              <CommandEmpty>No results found</CommandEmpty>
+            <CommandList
+              role="listbox"
+              aria-label="Filteropties"
+              className="focus:outline"
+            >
+              <CommandEmpty>Geen resultaten gevonden</CommandEmpty>
               <CommandGroup>
                 {orderedOptions.map((option) => {
                   const isSelected = selected.includes(option.value);
@@ -100,12 +111,15 @@ export function MultiSelectFilter({
                     <CommandItem
                       key={option.value}
                       onSelect={() => toggleValue(option.value)}
+                      role="option"
+                      aria-selected={isSelected}
                     >
                       <div
                         className={cn(
                           'mr-2 flex size-4 items-center justify-center rounded border',
                           isSelected ? 'bg-primary text-white' : 'opacity-30'
                         )}
+                        aria-hidden
                       >
                         <CheckIcon
                           className={cn('size-4', isSelected && 'text-white')}
@@ -125,39 +139,48 @@ export function MultiSelectFilter({
             <Button
               variant="outline"
               className="flex items-center gap-2 border-dashed"
+              aria-haspopup="listbox"
+              aria-expanded="false"
             >
               {placeholder}
               {selected.length > 0 && (
                 <>
                   <Badge
-                    aria-label={`${selected.length} items selected`}
+                    aria-label={`${selected.length} filter${
+                      selected.length === 1 ? '' : 's'
+                    } geselecteerd`}
                     variant="secondary"
                   >
                     {selected.length}
                   </Badge>
                   <Button
-                    aria-label="Clear all filters"
+                    aria-label="Verwijder alle filters"
                     size="icon"
                     variant="ghost"
                     onClick={clearAll}
                     className="size-4 p-0"
                   >
-                    <X className="size-3" />
+                    <X className="size-3" aria-hidden />
                   </Button>
                 </>
               )}
             </Button>
           </PopoverTrigger>
-          <PopoverContent className="p-0">
+          <PopoverContent
+            className="p-0"
+            role="dialog"
+            aria-label="Filterselectie"
+          >
             <Command shouldFilter={false}>
               <CommandInput
                 value={search}
                 onValueChange={setSearch}
                 placeholder={searchPlaceholder}
                 className="h-9"
+                aria-label="Zoek in filteropties"
               />
-              <CommandList>
-                <CommandEmpty>No results found</CommandEmpty>
+              <CommandList role="listbox" aria-label="Filteropties">
+                <CommandEmpty>Geen resultaten gevonden</CommandEmpty>
                 <CommandGroup>
                   {orderedOptions.map((option) => {
                     const isSelected = selected.includes(option.value);
@@ -165,17 +188,17 @@ export function MultiSelectFilter({
                       <CommandItem
                         key={option.value}
                         onSelect={() => toggleValue(option.value)}
+                        role="option"
+                        aria-selected={isSelected}
                       >
                         <div
                           className={cn(
                             'mr-2 flex size-4 items-center justify-center rounded border',
                             isSelected ? 'bg-primary text-white' : 'opacity-30'
                           )}
+                          aria-hidden
                         >
-                          <CheckIcon
-                            className="size-4 text-white"
-                            aria-hidden
-                          />
+                          <CheckIcon className="size-4" aria-hidden />
                         </div>
                         {option.label}
                       </CommandItem>
