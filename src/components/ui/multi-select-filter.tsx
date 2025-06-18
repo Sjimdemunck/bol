@@ -103,12 +103,12 @@ export function MultiSelectFilter({
                     >
                       <div
                         className={cn(
-                          'mr-2 flex h-4 w-4 items-center justify-center rounded border',
+                          'mr-2 flex size-4 items-center justify-center rounded border',
                           isSelected ? 'bg-primary text-white' : 'opacity-30'
                         )}
                       >
                         <CheckIcon
-                          className={cn('h-4 w-4', isSelected && 'text-white')}
+                          className={cn('size-4', isSelected && 'text-white')}
                         />
                       </div>
                       {option.label}
@@ -134,9 +134,9 @@ export function MultiSelectFilter({
                     size="icon"
                     variant="ghost"
                     onClick={clearAll}
-                    className="w-4 h-4 p-0"
+                    className="size-4 p-0"
                   >
-                    <X className="w-3 h-3" />
+                    <X className="size-3" />
                   </Button>
                 </>
               )}
@@ -162,12 +162,12 @@ export function MultiSelectFilter({
                       >
                         <div
                           className={cn(
-                            'mr-2 flex h-4 w-4 items-center justify-center rounded border',
+                            'mr-2 flex size-4 items-center justify-center rounded border',
                             isSelected ? 'bg-primary text-white' : 'opacity-30'
                           )}
                         >
                           <CheckIcon
-                            className="h-4 w-4 text-white"
+                            className="size-4 text-white"
                             aria-hidden
                           />
                         </div>
