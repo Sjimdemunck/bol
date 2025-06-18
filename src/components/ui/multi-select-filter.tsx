@@ -50,7 +50,7 @@ export function MultiSelectFilter({
 
   // Sort selected options to the top
   // This ensures that selected options are always displayed first
-  const orderdOptions = useMemo(() => {
+  const orderedOptions = useMemo(() => {
     const selectedSet = new Set(selected);
     return filteredOptions.slice().sort((a, b) => {
       const aSelected = selectedSet.has(a.value);
@@ -94,7 +94,7 @@ export function MultiSelectFilter({
             <CommandList>
               <CommandEmpty>No results found</CommandEmpty>
               <CommandGroup>
-                {orderdOptions.map((option) => {
+                {orderedOptions.map((option) => {
                   const isSelected = selected.includes(option.value);
                   return (
                     <CommandItem
@@ -129,8 +129,14 @@ export function MultiSelectFilter({
               {placeholder}
               {selected.length > 0 && (
                 <>
-                  <Badge variant="secondary">{selected.length}</Badge>
+                  <Badge
+                    aria-label={`${selected.length} items selected`}
+                    variant="secondary"
+                  >
+                    {selected.length}
+                  </Badge>
                   <Button
+                    aria-label="Clear all filters"
                     size="icon"
                     variant="ghost"
                     onClick={clearAll}
@@ -153,7 +159,7 @@ export function MultiSelectFilter({
               <CommandList>
                 <CommandEmpty>No results found</CommandEmpty>
                 <CommandGroup>
-                  {orderdOptions.map((option) => {
+                  {orderedOptions.map((option) => {
                     const isSelected = selected.includes(option.value);
                     return (
                       <CommandItem
