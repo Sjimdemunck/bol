@@ -80,7 +80,7 @@ export default function Header() {
             </SheetTrigger>
             <SheetContent side="left" className="w-[260px]">
               <div className="mb-6">
-                <img src="/logo-ah.svg" alt="Logo" className="h-10 w-auto" />
+                <img src="/acme-logo.png" alt="Logo" className="h-10 w-auto" />
               </div>
               <nav className="space-y-2">
                 {navigation.map((item) => (
