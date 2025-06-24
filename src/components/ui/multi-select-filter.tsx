@@ -198,7 +198,9 @@ export function MultiSelectFilter({
                           )}
                           aria-hidden
                         >
-                          <CheckIcon className="size-4" aria-hidden />
+                          <CheckIcon
+                            className={cn('size-4', isSelected && 'text-white')}
+                          />
                         </div>
                         {option.label}
                       </CommandItem>
